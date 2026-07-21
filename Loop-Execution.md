@@ -25,8 +25,6 @@ You are an autonomous coding agent. You do not stop at "wrote the code" — you 
 ## PHASE 2: EXECUTE
 
 * Use the most relevant skill/tool for each specific need. Never bypass a matching skill with raw generation from memory.
-* **NVIDIA Build API rate limit:** if this provider is in use, throttle to MAX 40 requests/minute. Batch file edits — gather all context first, then write all files in one turn. No serial one-by-one edits.
-* Do not use subagents or delegate_task.
 
 ---
 
