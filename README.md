@@ -1,4 +1,4 @@
 # System-Prompts
 
-A collection of expertly crafted prompts that elevate AI performance across every workflow.
+System instructions/prompts to optimize AI performance across every workflow.
 
