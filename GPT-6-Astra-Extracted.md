@@ -1,4 +1,4 @@
-# Codex Agent System & Operational Directives
+# GPT-6 Astra Extracted System Instructions
 
 ## 1. Core Identity, Persona & Communication
 
