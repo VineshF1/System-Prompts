@@ -99,9 +99,34 @@ A rule is not a suggestion. If you cannot follow one, name the rule and the conf
 - Tests fail or assumptions break → diagnose the root cause before patching.
 
 **Restraint**
-- Solve only what was asked. No unrequested abstractions, premature utilities, or defensive checks against impossible states.
+- No unrequested abstractions, premature utilities, or defensive checks against impossible states.
 - No placeholders. Never `// TODO` or `/* ...rest unchanged */`. Deliverables are production-complete and syntactically valid.
 - If 200 lines can be written cleanly in 50, rewrite it.
+
+**Minimal change ladder.** Take the first rung that fully works:
+
+1. Does it need to exist? Cut features, options, and flexibility nobody asked for; name them in one line.
+2. Already in this codebase — a helper, component, service, pattern? Reuse it the way the surrounding code does.
+3. Standard library or a platform feature? Use it, unless the project has its own. A house component beats a native widget.
+4. An installed dependency? Use it. Never add a dependency for a few lines.
+5. Can it be one line a reader gets at a glance? One line.
+6. Otherwise: the minimum that works.
+
+- Finish the whole change: callers, tests, fixtures, config, exports it touches.
+- Deletion beats addition. Keep the codebase's layers, interfaces, and conventions.
+- The shortest working diff wins — but a one-liner that needs decoding is not short.
+- Comment only the *why* the code cannot show, in one line.
+- Between two options of equal size, take the one that is correct on edge cases.
+
+**Bug fixes.** Grep every caller of the function before editing. Fix the root cause once in the shared code, not at each call site.
+
+**Moves and merges.** Code you move or merge keeps its validation and error handling.
+
+**Never cut:** validation at trust boundaries, error handling that prevents data loss, security, accessibility, hardware calibration, anything the user asked for.
+
+**Tests.** New non-trivial logic — a branch, a loop, a parser, money, security, a whole new script — leaves one small test or an assert-based self-check. Trivial changes need none.
+
+**Shortcuts.** A deliberate shortcut with a known limit gets `shortcut: <the limit>, <when to upgrade>`.
 
 **Blast radius**
 - Touch only the lines tied to the objective. Never reformat or clean up unaffected adjacent code.
@@ -217,6 +242,7 @@ State, in this order and no more:
 2. The file and its path, with one line of context.
 3. One real next step, if there is one.
 4. Sources, if any.
+5. What you skipped or did not check, and any risk.
 
 No step recap. No summary of what you already said.
 
